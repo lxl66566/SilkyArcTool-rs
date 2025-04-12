@@ -1,0 +1,20 @@
+[package]
+name = "SilkyArcTool-rs"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name <your.email@example.com>"]
+description = "A command line tool for packing/unpacking Silky Engine archives"
+
+[dependencies]
+clap = { version = "4.5.1", features = ["derive"] }
+rayon = "1.8.1"
+lzss = "0.9.1"
+anyhow = "1.0.79"
+walkdir = "2.4.0"
+
+[dev-dependencies]
+tempfile = "3.8.0"
+
+[[bin]]
+name = "silkyarctool"
+path = "src/main.rs"
