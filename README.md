@@ -6,7 +6,7 @@ Written by Claude 3.5 sonnet.
 
 ## Usage
 
-install binary from [Release](https://github.com/lxl66566/SilkyArcTool_rs/releases), then runs
+install binary from [Release](https://github.com/lxl66566/SilkyArcTool-rs/releases), then runs
 
 ```sh
 silkyarctool -h
