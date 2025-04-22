@@ -336,8 +336,8 @@ pub fn handle_pack(
                         + 4 // original_size
                         + 4; // offset
     }
-    let metadata_end_offset = current_offset;
-    debug!("Calculated metadata end offset: {}", metadata_end_offset);
+    let metadata_block_size = current_offset - 4;
+    debug!("Calculated metadata_block_size: {metadata_block_size}");
 
     // Assign final offsets
     for file_info in files_to_pack.iter_mut() {
@@ -362,7 +362,7 @@ pub fn handle_pack(
     let mut writer = BufWriter::new(output_file);
 
     // Write global header
-    writer.write_u32::<LittleEndian>(metadata_end_offset)?;
+    writer.write_u32::<LittleEndian>(metadata_block_size)?;
 
     // Write metadata entries
     for file_info in &files_to_pack {

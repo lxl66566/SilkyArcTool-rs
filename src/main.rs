@@ -5,7 +5,9 @@ use std::path::PathBuf;
 
 use clap::Parser as _;
 use cli::{Cli, Commands};
+use path_absolutize::Absolutize;
 use silky_arc_tool::{error::ArcError, handle_pack, handle_unpack};
+use tap::Tap;
 
 fn main() -> Result<(), ArcError> {
     _ = pretty_env_logger::formatted_builder()
@@ -23,12 +25,15 @@ fn main() -> Result<(), ArcError> {
             compress,
         } => {
             let output_path = output.unwrap_or_else(|| {
-                // Default output: input filename + .arc in the same directory
-                input
-                    .file_name()
-                    .map(|name| input.with_file_name(name).with_extension("arc"))
-                    // Handle case where input is "." or ".." or root? Unlikely for dir.
-                    .unwrap_or_else(|| PathBuf::from("output.arc")) // Fallback
+                // Default output: input + .arc in the same directory
+                PathBuf::from(
+                    input
+                        .absolutize()
+                        .expect("cannot absolutize input path")
+                        .as_os_str()
+                        .to_owned()
+                        .tap_mut(|x| x.push(".arc")),
+                )
             });
             // Check if derived path is same as input dir path, which is invalid
             if output_path == input {

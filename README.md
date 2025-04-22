@@ -2,8 +2,6 @@
 
 rust version of <https://github.com/TesterTesterov/SilkyArcTool>, with bug fixes and improvements.
 
-Written by _Gemini 2.5 Pro Preview 03-25_.
-
 ## Features
 
 - bug fix: packing unusable `voice.arc`.
@@ -20,10 +18,17 @@ silkyarctool -h
 
 to see help message.
 
-## Tested on
-
-- きまぐれテンプテーション (`voice.arc`)
-
 ## Tip
 
 - Do not use `--compress` while packing voice.
+
+## Tested on
+
+Only tested on packing and unpacking `voice.arc`.
+
+- きまぐれテンプテーション
+- Butterfly Seeker
+
+## Special Thanks
+
+_Gemini 2.5 Pro Preview 03-25_
